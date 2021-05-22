@@ -2,4 +2,9 @@
 <resources>
     <dimen name="dimen_18">18dp</dimen>
     <dimen name="bottom_navigation_height">56dp</dimen>
+    <dimen name="dimen_16">16dp</dimen>
+    <dimen name="text_18">18sp</dimen>
+    <dimen name="text_16">16sp</dimen>
+    <dimen name="dimen_7">7dp</dimen>
+    <dimen name="dimen_12">12dp</dimen>
 </resources>

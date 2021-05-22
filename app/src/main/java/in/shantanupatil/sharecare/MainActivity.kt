@@ -4,14 +4,16 @@ import `in`.shantanupatil.sharecare.base.BaseActivity
 import `in`.shantanupatil.sharecare.databinding.ActivityMainBinding
 import `in`.shantanupatil.sharecare.modules.home.HomeFragment
 import `in`.shantanupatil.sharecare.modules.routine.RoutineFragment
-import `in`.shantanupatil.sharecare.modules.volunteer.VolunteerFragment
+import `in`.shantanupatil.sharecare.modules.volunteer.VolunteerCategoryFragment
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * Entry point. MainActivity is responsible for holding all fragments shown as bottomNavigationView.
  */
+@AndroidEntryPoint
 class MainActivity : BaseActivity() {
 
     /**
@@ -52,7 +54,7 @@ class MainActivity : BaseActivity() {
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.actionVolunteer -> {
-                    switchFragment(VolunteerFragment())
+                    switchFragment(VolunteerCategoryFragment())
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.actionRoutine -> {
