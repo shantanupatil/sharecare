@@ -10,6 +10,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
 /**
  * Holds volunteer category data.
@@ -39,11 +41,11 @@ class VolunteerCategoryFragment : BaseFragment() {
      * Sets the recyclerview.
      */
     private fun setRecyclerView() {
-        volunteerCategoryAdapter = VolunteerCategoryAdapter()
+        volunteerCategoryAdapter = VolunteerCategoryAdapter(requireContext().resources, requestManager)
         binding.rvVolunteerCategories.apply {
             setHasFixedSize(true)
             layoutManager =
-                GridLayoutManager(requireContext(), NumericalConstants.VOLUNTEER_CATEGORY_UI_COUNT)
+                StaggeredGridLayoutManager(NumericalConstants.VOLUNTEER_CATEGORY_UI_COUNT, LinearLayoutManager.VERTICAL)
             adapter = volunteerCategoryAdapter
         }
     }

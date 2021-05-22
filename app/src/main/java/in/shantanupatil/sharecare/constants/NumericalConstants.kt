@@ -12,5 +12,7 @@ class NumericalConstants {
 
         // General Constants
         const val NUMBER_ZERO: Int = 0
+        const val NUMBER_ONE: Int = 1
+        const val MINUS_TEN: Int = -10
     }
 }

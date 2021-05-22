@@ -7,4 +7,7 @@
     <dimen name="text_16">16sp</dimen>
     <dimen name="dimen_7">7dp</dimen>
     <dimen name="dimen_12">12dp</dimen>
+    <dimen name="dimen_24">24dp</dimen>
+    <dimen name="dimen_3">3dp</dimen>
+    <dimen name="dimen_5">5dp</dimen>
 </resources>
