@@ -17,6 +17,11 @@ class VolunteerListAdapter(val requestManager: RequestManager) :
     private var volunteers: List<Volunteer> = listOf()
 
     /**
+     * Hold click listener for volunteers.
+     */
+    private var onItemClick: ((Volunteer) -> Unit)? = null
+
+    /**
      * Updates the list and notifies it's changes.
      */
     fun submitList(volunteerList: List<Volunteer>) {
@@ -33,6 +38,12 @@ class VolunteerListAdapter(val requestManager: RequestManager) :
                 .load(volunteer.profileImage)
                 .placeholder(R.drawable.circle_placeholder)
                 .into(binding.ivVolunteerThumb)
+
+            binding.root.setOnClickListener {
+                onItemClick?.let {onClick ->
+                    onClick(volunteer)
+                }
+            }
         }
     }
 
@@ -48,5 +59,12 @@ class VolunteerListAdapter(val requestManager: RequestManager) :
 
     override fun onBindViewHolder(holder: VolunteerHolder, position: Int) {
         holder.bind(volunteers[position])
+    }
+
+    /**
+     * Sets the click listener for volunteer click.
+     */
+    fun setOnVolunteerClickedListener(listener: ((Volunteer) -> Unit)) {
+        onItemClick = listener
     }
 }

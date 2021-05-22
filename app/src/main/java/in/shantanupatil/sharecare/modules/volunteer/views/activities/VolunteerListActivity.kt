@@ -46,9 +46,14 @@ class VolunteerListActivity : BaseActivity() {
     private fun getIntentAndLoadData() {
         val volunteerCategory =
             intent.getSerializableExtra(StringConstants.VOLUNTEER_CATEGORY_OBJECT) as VolunteerCategory
+
+        // Set the title
+        binding.tvTitle.text = volunteerCategory.title
+
+        // Load data
         mainViewModel.loadVolunteers(volunteerCategory.id) { volunteers ->
             hideProgressbar()
-            if(volunteers.isNotEmpty()) {
+            if (volunteers.isNotEmpty()) {
                 volunteerListAdapter.submitList(volunteers)
             } else {
                 binding.tvError.visibility = View.VISIBLE
