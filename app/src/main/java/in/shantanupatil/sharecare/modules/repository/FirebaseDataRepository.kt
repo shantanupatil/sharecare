@@ -31,6 +31,7 @@ class FirebaseDataRepository :
 
     override fun loadVolunteerCategories(listener: (List<VolunteerCategory>) -> Unit) {
         firebaseFirestore.collection("volunteer_categories")
+            .orderBy("timestamp", Query.Direction.DESCENDING)
             .get()
             .addOnSuccessListener {
                 val volunteerCategories = ArrayList<VolunteerCategory>()

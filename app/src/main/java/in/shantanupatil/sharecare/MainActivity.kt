@@ -3,6 +3,7 @@ package `in`.shantanupatil.sharecare
 import `in`.shantanupatil.sharecare.base.BaseActivity
 import `in`.shantanupatil.sharecare.databinding.ActivityMainBinding
 import `in`.shantanupatil.sharecare.modules.home.HomeFragment
+import `in`.shantanupatil.sharecare.modules.interfaces.IFragmentCallsMA
 import `in`.shantanupatil.sharecare.modules.routine.RoutineFragment
 import `in`.shantanupatil.sharecare.modules.volunteer.VolunteerCategoryFragment
 import android.os.Bundle
@@ -14,7 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
  * Entry point. MainActivity is responsible for holding all fragments shown as bottomNavigationView.
  */
 @AndroidEntryPoint
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity(), IFragmentCallsMA {
 
     /**
      * Binding for the main activity.
@@ -64,5 +65,9 @@ class MainActivity : BaseActivity() {
                 else -> return@setOnNavigationItemSelectedListener false
             }
         }
+    }
+
+    override fun title(title: String) {
+        binding.tvTitle.text = title
     }
 }

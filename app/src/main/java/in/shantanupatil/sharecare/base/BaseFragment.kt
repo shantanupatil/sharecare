@@ -1,6 +1,10 @@
 package `in`.shantanupatil.sharecare.base
 
+import `in`.shantanupatil.sharecare.MainActivity
+import `in`.shantanupatil.sharecare.R
+import `in`.shantanupatil.sharecare.modules.interfaces.IFragmentCallsMA
 import `in`.shantanupatil.sharecare.modules.viewmodels.MainViewModel
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.ProgressBar
@@ -22,6 +26,13 @@ open class BaseFragment : Fragment() {
 
     val mainViewModel: MainViewModel by viewModels()
 
+    private var activityListener: IFragmentCallsMA? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        activityListener = context as MainActivity
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -31,5 +42,13 @@ open class BaseFragment : Fragment() {
      */
     fun hideProgressbar(pbProgress: ProgressBar) {
         pbProgress.visibility = View.GONE
+    }
+
+    /**
+     * Sets the title.
+     */
+    fun setTitle(title: String) {
+        activityListener?.title(title)
+
     }
 }

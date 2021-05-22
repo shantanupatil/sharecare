@@ -17,7 +17,7 @@ import com.makeramen.roundedimageview.RoundedImageView
 
 class VolunteerCategoryAdapter(
     val resources: Resources,
-    val requestManager: RequestManager
+    private val requestManager: RequestManager
 ) :
     RecyclerView.Adapter<VolunteerCategoryAdapter.VolunteerCategoryHolder>() {
 
@@ -32,7 +32,7 @@ class VolunteerCategoryAdapter(
 
     private var volunteerCategories: List<VolunteerCategory> = listOf()
 
-    inner class VolunteerCategoryHolder(val binding: VolunteerCategoryItemBinding) :
+    inner class VolunteerCategoryHolder(private val binding: VolunteerCategoryItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(volunteerCategory: VolunteerCategory) {
@@ -71,6 +71,7 @@ class VolunteerCategoryAdapter(
                 layoutParams
         }
         requestManager.load(volunteerCategory.images[index])
+            .placeholder(R.drawable.circle_placeholder)
             .into(image)
         binding.clImagesContainer.addView(image)
     }

@@ -16,6 +16,11 @@ class RoutineFragment : BaseFragment() {
 
     private lateinit var binding: FragmentRoutineBinding
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setTitle(getString(R.string.routine))
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentRoutineBinding.bind(view)

@@ -28,6 +28,11 @@ class VolunteerCategoryFragment : BaseFragment() {
      */
     private lateinit var volunteerCategoryAdapter: VolunteerCategoryAdapter
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setTitle(getString(R.string.volunteer_type))
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentVolunteerCategoryBinding.bind(view)

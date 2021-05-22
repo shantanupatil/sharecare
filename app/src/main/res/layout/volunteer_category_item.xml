@@ -17,6 +17,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_18"
             app:customfontStyle="bold"
+            android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="@string/dummy_category_name" />
