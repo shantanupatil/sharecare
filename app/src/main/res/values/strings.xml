@@ -4,8 +4,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="something_went_wrong">Something went wrong</string>
     <string name="home">Home</string>
-    <string name="volunteer">Volunteer</string>
+    <string name="volunteer">Volunteers</string>
     <string name="routine">Routine</string>
     <string name="dummy_category_name">Category Name</string>
     <string name="volunteer_type">Select Volunteer Type</string>
+    <string name="no_volunteers">No Volunteers Found</string>
+    <string name="contact_volunteer">Contact Volunteer</string>
 </resources>

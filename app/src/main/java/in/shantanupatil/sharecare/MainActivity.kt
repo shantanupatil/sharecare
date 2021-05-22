@@ -5,10 +5,12 @@ import `in`.shantanupatil.sharecare.databinding.ActivityMainBinding
 import `in`.shantanupatil.sharecare.modules.home.HomeFragment
 import `in`.shantanupatil.sharecare.modules.interfaces.IFragmentCallsMA
 import `in`.shantanupatil.sharecare.modules.routine.RoutineFragment
-import `in`.shantanupatil.sharecare.modules.volunteer.VolunteerCategoryFragment
+import `in`.shantanupatil.sharecare.modules.viewmodels.MainViewModel
+import `in`.shantanupatil.sharecare.modules.volunteer.views.fragments.VolunteerCategoryFragment
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.RequestManager
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -69,5 +71,13 @@ class MainActivity : BaseActivity(), IFragmentCallsMA {
 
     override fun title(title: String) {
         binding.tvTitle.text = title
+    }
+
+    override fun getViewModel(): MainViewModel {
+        return mainViewModel
+    }
+
+    override fun getRequestManager_(): RequestManager {
+        return requestManager
     }
 }

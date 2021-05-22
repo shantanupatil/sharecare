@@ -1,15 +1,17 @@
-package `in`.shantanupatil.sharecare.modules.volunteer
+package `in`.shantanupatil.sharecare.modules.volunteer.views.fragments
 
 import `in`.shantanupatil.sharecare.R
 import `in`.shantanupatil.sharecare.base.BaseFragment
 import `in`.shantanupatil.sharecare.constants.NumericalConstants
+import `in`.shantanupatil.sharecare.constants.StringConstants
 import `in`.shantanupatil.sharecare.databinding.FragmentVolunteerCategoryBinding
-import `in`.shantanupatil.sharecare.modules.volunteer.views.VolunteerCategoryAdapter
+import `in`.shantanupatil.sharecare.modules.volunteer.views.activities.VolunteerListActivity
+import `in`.shantanupatil.sharecare.modules.volunteer.views.adapters.VolunteerCategoryAdapter
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
@@ -46,12 +48,28 @@ class VolunteerCategoryFragment : BaseFragment() {
      * Sets the recyclerview.
      */
     private fun setRecyclerView() {
-        volunteerCategoryAdapter = VolunteerCategoryAdapter(requireContext().resources, requestManager)
+        volunteerCategoryAdapter =
+            VolunteerCategoryAdapter(
+                requireContext().resources,
+                requestManager
+            )
         binding.rvVolunteerCategories.apply {
             setHasFixedSize(true)
             layoutManager =
-                StaggeredGridLayoutManager(NumericalConstants.VOLUNTEER_CATEGORY_UI_COUNT, LinearLayoutManager.VERTICAL)
+                StaggeredGridLayoutManager(
+                    NumericalConstants.VOLUNTEER_CATEGORY_UI_COUNT,
+                    LinearLayoutManager.VERTICAL
+                )
             adapter = volunteerCategoryAdapter
+        }
+
+        // Handles the click
+        volunteerCategoryAdapter.setOnVolunteerCategoryClicked { volunteerCategory ->
+            Intent(requireContext(), VolunteerListActivity::class.java).apply {
+                putExtra(StringConstants.VOLUNTEER_CATEGORY_OBJECT, volunteerCategory)
+            }.also { intent ->
+                startActivity(intent)
+            }
         }
     }
 

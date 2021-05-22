@@ -10,4 +10,7 @@
     <dimen name="dimen_24">24dp</dimen>
     <dimen name="dimen_3">3dp</dimen>
     <dimen name="dimen_5">5dp</dimen>
+    <dimen name="text_small">14sp</dimen>
+    <dimen name="dimen_1">1dp</dimen>
+    <dimen name="volunteer_thumb_size">50dp</dimen>
 </resources>

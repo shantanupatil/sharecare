@@ -8,7 +8,7 @@ interface IFirebaseDataRepository {
     /**
      * Loads volunteers data
      */
-    fun loadVolunteers(listener: (List<Volunteer>) -> Unit)
+    fun loadVolunteers(id: String, listener: (List<Volunteer>) -> Unit)
 
     /**
      * Loads volunteer categories.

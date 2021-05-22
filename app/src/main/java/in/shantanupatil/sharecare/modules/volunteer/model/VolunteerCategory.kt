@@ -1,6 +1,8 @@
 package `in`.shantanupatil.sharecare.modules.volunteer.model
 
-class VolunteerCategory {
+import java.io.Serializable
+
+class VolunteerCategory: Serializable {
     val id: String = ""
     val title: String = ""
     val description: String = ""

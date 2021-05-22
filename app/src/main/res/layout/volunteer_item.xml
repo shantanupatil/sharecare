@@ -1,8 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:padding="@dimen/dimen_16">
 
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/ivVolunteerThumb"
+        android:layout_width="@dimen/volunteer_thumb_size"
+        android:layout_height="@dimen/volunteer_thumb_size"
+        android:scaleType="centerCrop"
+        app:riv_oval="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <in.shantanupatil.sharecare.custom.ShareCareTextView
+        android:id="@+id/tvVolunteerName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_12"
+        android:layout_marginEnd="@dimen/dimen_12"
+        app:customfontStyle="bold"
+        android:textSize="@dimen/text_18"
+        app:layout_constraintStart_toEndOf="@id/ivVolunteerThumb"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/app_name" />
+
+    <in.shantanupatil.sharecare.custom.ShareCareTextView
+        android:id="@+id/tvVolunteerDescription"
+        android:layout_width="0dp"
+        android:layout_marginTop="@dimen/dimen_7"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_12"
+        android:layout_marginEnd="@dimen/dimen_12"
+        android:textSize="@dimen/text_16"
+        android:lineSpacingExtra="@dimen/dimen_7"
+        android:maxLines="2"
+        android:ellipsize="end"
+        app:layout_constraintTop_toBottomOf="@id/tvVolunteerName"
+        app:layout_constraintStart_toEndOf="@id/ivVolunteerThumb"
+        tools:text="@string/app_name" />
+
+    <in.shantanupatil.sharecare.custom.ShareCareTextView
+        android:id="@+id/tvContact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/contact_volunteer"
+        app:customfontStyle="bold"
+        android:textColor="@color/design_default_color_primary"
+        app:layout_constraintStart_toStartOf="@id/tvVolunteerName"
+        app:layout_constraintTop_toBottomOf="@id/tvVolunteerDescription"
+        android:layout_marginTop="@dimen/dimen_16"
+        android:textSize="@dimen/text_small"/>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dimen_1"
+        app:layout_constraintStart_toStartOf="@id/tvVolunteerName"
+        app:layout_constraintTop_toBottomOf="@id/tvContact"
+        android:layout_marginTop="@dimen/dimen_12"
+        android:background="@color/lighest_black"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

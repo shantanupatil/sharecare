@@ -1,4 +1,4 @@
-package `in`.shantanupatil.sharecare.modules.volunteer.views
+package `in`.shantanupatil.sharecare.modules.volunteer.views.adapters
 
 import `in`.shantanupatil.sharecare.R
 import `in`.shantanupatil.sharecare.constants.NumericalConstants
@@ -26,6 +26,11 @@ class VolunteerCategoryAdapter(
      */
     private var widthHeight: Int = 0
 
+    /**
+     * Holds function when a volunteer category is clicked.
+     */
+    private var onVolunteerCategoryClicked: ((VolunteerCategory) -> Unit)? = null
+
     init {
         widthHeight = resources.getDimension(R.dimen.dimen_24).toInt()
     }
@@ -41,6 +46,12 @@ class VolunteerCategoryAdapter(
             if (volunteerCategory.images.isNotEmpty()) {
                 for (index in volunteerCategory.images.indices) {
                     setImage(binding.root.context, index, volunteerCategory, binding)
+                }
+            }
+
+            binding.root.setOnClickListener {
+                onVolunteerCategoryClicked?.let { onClick ->
+                    onClick(volunteerCategory)
                 }
             }
         }
@@ -67,7 +78,7 @@ class VolunteerCategoryAdapter(
                 NumericalConstants.NUMBER_ZERO,
                 NumericalConstants.NUMBER_ZERO
             )
-           image.layoutParams =
+            image.layoutParams =
                 layoutParams
         }
         requestManager.load(volunteerCategory.images[index])
@@ -97,4 +108,12 @@ class VolunteerCategoryAdapter(
         // Please use notifyItemRangeChanged()
         notifyDataSetChanged()
     }
+
+    /**
+     * Sets the listener for volunteer category clicking.
+     */
+    fun setOnVolunteerCategoryClicked(listener: ((VolunteerCategory) -> Unit)) {
+        onVolunteerCategoryClicked = listener
+    }
+
 }

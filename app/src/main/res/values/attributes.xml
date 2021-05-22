@@ -8,6 +8,7 @@
         <attr name="customfontStyle" format="enum">
             <enum name="regular" value="0" />
             <enum name="bold" value="1" />
+            <enum name="extrabold" value="2" />
         </attr>
     </declare-styleable>
 </resources>

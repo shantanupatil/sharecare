@@ -2,6 +2,7 @@ package `in`.shantanupatil.sharecare.modules.viewmodels
 
 import `in`.shantanupatil.sharecare.modules.repository.interfaces.IFirebaseDataRepository
 import `in`.shantanupatil.sharecare.modules.repository.interfaces.ILocalDataRepository
+import `in`.shantanupatil.sharecare.modules.volunteer.model.Volunteer
 import `in`.shantanupatil.sharecare.modules.volunteer.model.VolunteerCategory
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,6 +22,13 @@ class MainViewModel @Inject constructor(
      */
     fun loadVolunteerCategories(listener: (List<VolunteerCategory>) -> Unit) {
         firebaseDataRepository.loadVolunteerCategories(listener)
+    }
+
+    /**
+     * Loads volunteer data from id.
+     */
+    fun loadVolunteers(id: String, listener: (List<Volunteer>) -> Unit) {
+        firebaseDataRepository.loadVolunteers(id, listener)
     }
 
 

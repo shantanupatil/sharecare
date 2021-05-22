@@ -7,15 +7,17 @@ import `in`.shantanupatil.sharecare.modules.volunteer.model.VolunteerCategory
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 
+/**
+ * Interacts with firebase to load and save data.
+ */
 class FirebaseDataRepository :
     IFirebaseDataRepository {
 
     private var firebaseFirestore: FirebaseFirestore = FirebaseFirestore.getInstance()
 
-    override fun loadVolunteers(listener: (List<Volunteer>) -> Unit) {
+    override fun loadVolunteers(id: String, listener: (List<Volunteer>) -> Unit) {
         firebaseFirestore.collection("volunteer")
-            .orderBy("timestamp", Query.Direction.DESCENDING)
-            .limit(NumericalConstants.VOLUNTEER_LIMIT.toLong())
+            .whereEqualTo("typeId", id)
             .get()
             .addOnSuccessListener {
                 val volunteers = ArrayList<Volunteer>()
@@ -39,7 +41,7 @@ class FirebaseDataRepository :
                     val volunteerCategory = document.toObject(VolunteerCategory::class.java)
                     volunteerCategories.add(volunteerCategory)
                 }
-                listener(volunteerCategories    )
+                listener(volunteerCategories)
             }.addOnFailureListener {
                 listener(mutableListOf())
             }
