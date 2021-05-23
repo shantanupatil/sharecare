@@ -21,6 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dimen_12"
         android:layout_marginEnd="@dimen/dimen_12"
+        app:layout_constraintEnd_toEndOf="parent"
         app:customfontStyle="bold"
         android:textSize="@dimen/text_18"
         app:layout_constraintStart_toEndOf="@id/ivVolunteerThumb"
@@ -30,6 +31,7 @@
     <in.shantanupatil.sharecare.custom.ShareCareTextView
         android:id="@+id/tvVolunteerDescription"
         android:layout_width="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="@dimen/dimen_7"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dimen_12"

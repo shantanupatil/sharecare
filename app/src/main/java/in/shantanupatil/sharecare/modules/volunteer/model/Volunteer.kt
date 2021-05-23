@@ -1,6 +1,8 @@
 package `in`.shantanupatil.sharecare.modules.volunteer.model
 
-class Volunteer() {
+import java.io.Serializable
+
+class Volunteer() : Serializable {
     var name: String = ""
     var description: String = ""
     var profileImage: String = ""

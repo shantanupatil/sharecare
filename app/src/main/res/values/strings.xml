@@ -1,13 +1,23 @@
 <resources>
     <string name="app_name">ShareCare</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
+    <!-- Dummy Strings -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="something_went_wrong">Something went wrong</string>
-    <string name="home">Home</string>
-    <string name="volunteer">Volunteers</string>
-    <string name="routine">Routine</string>
     <string name="dummy_category_name">Category Name</string>
+
+    <!-- Error strings -->
+    <string name="something_went_wrong">Something went wrong</string>
+
+    <!-- Home Strings -->
+    <string name="home">Home</string>
+
+    <!-- Volunteer Strings -->
+    <string name="volunteer">Volunteers</string>
     <string name="volunteer_type">Select Volunteer Type</string>
     <string name="no_volunteers">No Volunteers Found</string>
     <string name="contact_volunteer">Contact Volunteer</string>
+    <string name="no_contact_information_found">No Contact information found</string>
+
+    <!-- Routine Strings -->
+    <string name="routine">Routine</string>
 </resources>

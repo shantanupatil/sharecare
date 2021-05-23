@@ -5,6 +5,7 @@ import `in`.shantanupatil.sharecare.constants.StringConstants
 import `in`.shantanupatil.sharecare.databinding.ActivityVolunteerListBinding
 import `in`.shantanupatil.sharecare.modules.volunteer.model.VolunteerCategory
 import `in`.shantanupatil.sharecare.modules.volunteer.views.adapters.VolunteerListAdapter
+import `in`.shantanupatil.sharecare.modules.volunteer.views.fragments.VolunteerContactDialogFragment
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -29,6 +30,10 @@ class VolunteerListActivity : BaseActivity() {
             finish()
         }
 
+        volunteerListAdapter.setOnVolunteerClickedListener {
+            val volunteerDialogFragment = VolunteerContactDialogFragment().newInstance(it)
+            volunteerDialogFragment.show(supportFragmentManager, "VolunteerContactFragment")
+        }
     }
 
     private fun setRecyclerView() {

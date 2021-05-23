@@ -5,6 +5,7 @@ class StringConstants {
 
         // Volunteer constants
         const val VOLUNTEER_CATEGORY_OBJECT: String = "volunteer_category"
+        const val VOLUNTEER_OBJECT: String = "volunteer_object"
 
         // Log constants
         const val ERROR_TAG: String = "error_tag"
