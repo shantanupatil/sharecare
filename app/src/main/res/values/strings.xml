@@ -20,4 +20,7 @@
 
     <!-- Routine Strings -->
     <string name="routine">Routine</string>
+    <string name="add_routines">Add Routines</string>
+    <string name="enter_title">Enter title</string>
+    <string name="submit">Submit</string>
 </resources>

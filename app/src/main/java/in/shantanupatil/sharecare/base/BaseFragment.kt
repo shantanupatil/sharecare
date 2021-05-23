@@ -46,7 +46,11 @@ open class BaseFragment : Fragment() {
      * Sets the title.
      */
     fun setTitle(title: String) {
-        activityListener?.title(title)
+        activityListener.title(title)
 
+    }
+
+    fun setIconVisibility(shouldShow: Boolean) {
+        activityListener.setToolbarIconVisibility(shouldShow)
     }
 }

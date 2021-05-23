@@ -24,6 +24,9 @@ class RoutineFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentRoutineBinding.bind(view)
+
+        setIconVisibility(true)
+
     }
 
     override fun onCreateView(

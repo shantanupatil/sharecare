@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".modules.routine.AddRoutineActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/ablAddRoutine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivBackButton"
+                    android:layout_width="@dimen/dimen_24"
+                    android:layout_height="@dimen/dimen_24"
+                    android:src="@drawable/ic_baseline_arrow_back_24" />
+
+                <in.shantanupatil.sharecare.custom.ShareCareTextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/text_16"
+                    android:layout_marginEnd="@dimen/text_16"
+                    android:text="@string/add_routines"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_18"
+                    app:customfontStyle="bold" />
+
+            </LinearLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <in.shantanupatil.sharecare.custom.ShareCareEditText
+        android:id="@+id/etTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/text_16"
+        android:hint="@string/enter_title"
+        app:layout_constraintTop_toBottomOf="@+id/ablAddRoutine" />
+
+
+    <in.shantanupatil.sharecare.custom.ShareCareTextView
+        android:id="@+id/tvSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/text_16"
+        android:layout_marginEnd="@dimen/text_16"
+        android:background="@drawable/primary_button"
+        android:gravity="center_horizontal"
+        android:padding="@dimen/dimen_12"
+        android:text="@string/submit"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:layout_marginTop="@dimen/dimen_12"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etTitle" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

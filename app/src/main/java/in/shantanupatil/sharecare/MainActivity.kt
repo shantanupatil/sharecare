@@ -4,9 +4,11 @@ import `in`.shantanupatil.sharecare.base.BaseActivity
 import `in`.shantanupatil.sharecare.databinding.ActivityMainBinding
 import `in`.shantanupatil.sharecare.modules.home.HomeFragment
 import `in`.shantanupatil.sharecare.modules.interfaces.IFragmentCallsMA
+import `in`.shantanupatil.sharecare.modules.routine.AddRoutineActivity
 import `in`.shantanupatil.sharecare.modules.routine.RoutineFragment
 import `in`.shantanupatil.sharecare.modules.viewmodels.MainViewModel
 import `in`.shantanupatil.sharecare.modules.volunteer.views.fragments.VolunteerCategoryFragment
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -79,5 +81,17 @@ class MainActivity : BaseActivity(), IFragmentCallsMA {
 
     override fun getRequestManager_(): RequestManager {
         return requestManager
+    }
+
+    override fun setToolbarIconVisibility(shouldShow: Boolean) {
+        if (shouldShow) {
+            binding.ivAdd.visibility = View.VISIBLE
+        } else {
+            binding.ivAdd.visibility = View.GONE
+        }
+
+        binding.ivAdd.setOnClickListener {
+            startActivity(Intent(this, AddRoutineActivity::class.java))
+        }
     }
 }

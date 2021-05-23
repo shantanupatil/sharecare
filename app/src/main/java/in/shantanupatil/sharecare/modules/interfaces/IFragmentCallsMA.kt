@@ -21,4 +21,9 @@ interface IFragmentCallsMA {
      * Returns request manager.
      */
     fun getRequestManager_(): RequestManager
+
+    /**
+     * Should show toolbar icon.
+     */
+    fun setToolbarIconVisibility(shouldShow: Boolean)
 }

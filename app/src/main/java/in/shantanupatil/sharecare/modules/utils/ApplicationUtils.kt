@@ -6,6 +6,10 @@ import android.net.Uri
 
 class ApplicationUtils {
     companion object {
+
+        /**
+         * Opens the android dial pad with number.
+         */
         fun callNumber(context: Context, number: Long) {
             Intent(Intent.ACTION_DIAL).apply {
                 data = Uri.parse("tel:$number")
