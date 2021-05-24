@@ -1,11 +1,9 @@
 package `in`.shantanupatil.sharecare.modules.home
 
-import `in`.shantanupatil.sharecare.MainActivity
 import `in`.shantanupatil.sharecare.R
 import `in`.shantanupatil.sharecare.base.BaseFragment
 import `in`.shantanupatil.sharecare.databinding.FragmentHomeBinding
-import `in`.shantanupatil.sharecare.modules.interfaces.IFragmentCallsMA
-import android.content.Context
+import `in`.shantanupatil.sharecare.modules.utils.ApplicationUtils
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -28,6 +26,15 @@ class HomeFragment : BaseFragment() {
         binding = FragmentHomeBinding.bind(view)
 
         setIconVisibility(false)
+
+        setCalendarClickListeners()
+    }
+
+    private fun setCalendarClickListeners() {
+        binding.cvHome.setOnDateChangeListener { view, year, month, dayOfMonth ->
+            ApplicationUtils.setTimeInMillis(year, month, dayOfMonth)
+            navigateToRoutines()
+        }
     }
 
     override fun onCreateView(

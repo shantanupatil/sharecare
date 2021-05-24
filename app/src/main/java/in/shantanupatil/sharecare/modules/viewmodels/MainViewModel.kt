@@ -1,6 +1,6 @@
 package `in`.shantanupatil.sharecare.modules.viewmodels
 
-import `in`.shantanupatil.sharecare.modules.Resource
+
 import `in`.shantanupatil.sharecare.modules.repository.interfaces.IFirebaseDataRepository
 import `in`.shantanupatil.sharecare.modules.repository.interfaces.ILocalDataRepository
 import `in`.shantanupatil.sharecare.modules.routine.model.DailyRoutines
@@ -8,12 +8,11 @@ import `in`.shantanupatil.sharecare.modules.routine.model.Routine
 import `in`.shantanupatil.sharecare.modules.utils.ApplicationUtils
 import `in`.shantanupatil.sharecare.modules.volunteer.model.Volunteer
 import `in`.shantanupatil.sharecare.modules.volunteer.model.VolunteerCategory
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import java.lang.Exception
 import javax.inject.Inject
 
 /**
@@ -44,17 +43,21 @@ class MainViewModel @Inject constructor(
      */
     fun addRoutine(routine: Routine) = viewModelScope.launch {
         localDataRepository.insert(routine)
-
     }
 
     /**
-     * Adds the routine to todays routine
+     * Loads routine from database.
      */
-    private fun addToDailyRoutine(routine: Routine) {
-        localDataRepository.getRoutinesForToday(ApplicationUtils.getStartOfTheDayTimestamp())
+    fun loadRoutinesDataFromDatabase(): LiveData<List<DailyRoutines>> {
+        // First it assumes that the use has clicked some date from calendar
+        var timestamp = ApplicationUtils.getTimeInMillis()
+        // If the timestamp is null this means the user has not selected the date
+        // Load the routines for todays date.
+        if (timestamp == (-1).toLong()) {
+            timestamp = ApplicationUtils.getStartOfTheDayTimestamp()
+        }
+        return localDataRepository.getRoutinesForToday(timestamp)
     }
-
-    fun loadRoutinesDataFromDatabase() = localDataRepository.getRoutinesForToday(ApplicationUtils.getStartOfTheDayTimestamp())
 
     /**
      * Adds routines to database.
@@ -74,3 +77,4 @@ class MainViewModel @Inject constructor(
         localDataRepository.update(dailyRoutines)
     }
 }
+

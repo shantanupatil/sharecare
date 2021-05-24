@@ -63,4 +63,11 @@ open class BaseFragment : Fragment() {
     fun setIconVisibility(shouldShow: Boolean) {
         activityListener.setToolbarIconVisibility(shouldShow)
     }
+
+    /**
+     * Navigates to routines fragment.
+     */
+    fun navigateToRoutines(){
+        activityListener.navigateToRoutines()
+    }
 }

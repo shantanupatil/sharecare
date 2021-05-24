@@ -4,6 +4,7 @@ import `in`.shantanupatil.sharecare.R
 import `in`.shantanupatil.sharecare.base.BaseFragment
 import `in`.shantanupatil.sharecare.databinding.FragmentRoutineBinding
 import `in`.shantanupatil.sharecare.modules.routine.views.DailyRoutineAdapter
+import `in`.shantanupatil.sharecare.modules.utils.ApplicationUtils
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -72,8 +73,15 @@ class RoutineFragment : BaseFragment() {
                 response?.let { dailyRoutine ->
                     hideProgressbar(binding.pbProgress)
                     if (dailyRoutine.isEmpty()) {
-                        binding.tvError.text = getString(R.string.no_routines)
-                        mainViewModel.addRoutinesToDatabase()
+                        // Checks if the millis are set, if it is not -1 then the database do have
+                        // entries for the selected date.
+                        if (ApplicationUtils.getTimeInMillis() == (-1).toLong()) {
+                            binding.tvError.text = getString(R.string.no_routines)
+                            mainViewModel.addRoutinesToDatabase()
+                        } else {
+                            binding.tvError.text = getString(R.string.no_routines_for_the_date)
+                            ApplicationUtils.setTimeInMillis(-1, -1, -1)
+                        }
                     } else {
                         binding.tvError.visibility = View.GONE
                         dailyRoutineAdapter.submitList(dailyRoutine[0])

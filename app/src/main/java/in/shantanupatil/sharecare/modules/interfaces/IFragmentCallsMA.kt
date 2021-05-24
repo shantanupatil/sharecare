@@ -26,4 +26,9 @@ interface IFragmentCallsMA {
      * Should show toolbar icon.
      */
     fun setToolbarIconVisibility(shouldShow: Boolean)
+
+    /**
+     * Navigates to routines fragment.
+     */
+    fun navigateToRoutines()
 }

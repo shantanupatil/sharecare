@@ -29,4 +29,5 @@
     <string name="completed">Completed</string>
     <string name="not_completed">Not Completed</string>
     <string name="no_routines">No daily routine, please add using the \'+\' icon.</string>
+    <string name="no_routines_for_the_date">No routines available for the selected date</string>
 </resources>

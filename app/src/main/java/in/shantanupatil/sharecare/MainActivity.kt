@@ -94,4 +94,8 @@ class MainActivity : BaseActivity(), IFragmentCallsMA {
             startActivity(Intent(this, AddRoutineActivity::class.java))
         }
     }
+
+    override fun navigateToRoutines() {
+        binding.bnvMain.selectedItemId = R.id.actionRoutine
+    }
 }
