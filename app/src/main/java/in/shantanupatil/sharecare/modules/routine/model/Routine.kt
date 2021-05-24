@@ -6,7 +6,8 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "routine_table")
 data class Routine(
     @PrimaryKey
-    val id: Long,
+    val id: Long = 0,
     val title: String,
+    val timestamp: Long = 0,
     val isCompleted: Boolean
 )

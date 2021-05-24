@@ -23,16 +23,24 @@ abstract class ShareCareDatabase : RoomDatabase() {
         private var instance: ShareCareDatabase? = null
 
         @Synchronized
-        fun getInstance(context: Context): ShareCareDatabase {
-            if (instance == null) {
-                instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    ShareCareDatabase::class.java,
-                    StringConstants.DATABASE_NAME
-                )
-                    .fallbackToDestructiveMigration()
-                    .build()
+        fun invoke(context: Context) {
+            instance ?: createDatabase(context).also {
+                instance = it
             }
+        }
+
+        private fun createDatabase(context: Context): ShareCareDatabase {
+            return Room.databaseBuilder(
+                context.applicationContext,
+                ShareCareDatabase::class.java,
+                StringConstants.DATABASE_NAME
+            )
+                .fallbackToDestructiveMigration()
+                .build()
+        }
+
+        @Synchronized
+        fun getInstance(): ShareCareDatabase {
             return instance!!
         }
 

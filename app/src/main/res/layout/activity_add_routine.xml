@@ -54,6 +54,15 @@
         android:hint="@string/enter_title"
         app:layout_constraintTop_toBottomOf="@+id/ablAddRoutine" />
 
+    <in.shantanupatil.sharecare.custom.ShareCareEditText
+        android:id="@+id/etDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/text_16"
+        android:editable="false"
+        android:focusable="false"
+        android:hint="@string/select_time"
+        app:layout_constraintTop_toBottomOf="@id/etTitle"/>
 
     <in.shantanupatil.sharecare.custom.ShareCareTextView
         android:id="@+id/tvSubmit"
@@ -69,6 +78,6 @@
         android:textColor="@color/white"
         android:layout_marginTop="@dimen/dimen_12"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/etDate" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

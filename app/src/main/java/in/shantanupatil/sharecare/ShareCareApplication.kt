@@ -13,6 +13,6 @@ class ShareCareApplication : Application() {
         super.onCreate()
 
         // Create or initialize the database
-        ShareCareDatabase.getInstance(this)
+        ShareCareDatabase.invoke(this)
     }
 }

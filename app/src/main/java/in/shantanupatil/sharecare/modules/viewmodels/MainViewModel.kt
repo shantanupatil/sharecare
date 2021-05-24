@@ -2,10 +2,13 @@ package `in`.shantanupatil.sharecare.modules.viewmodels
 
 import `in`.shantanupatil.sharecare.modules.repository.interfaces.IFirebaseDataRepository
 import `in`.shantanupatil.sharecare.modules.repository.interfaces.ILocalDataRepository
+import `in`.shantanupatil.sharecare.modules.routine.model.Routine
 import `in`.shantanupatil.sharecare.modules.volunteer.model.Volunteer
 import `in`.shantanupatil.sharecare.modules.volunteer.model.VolunteerCategory
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
@@ -29,6 +32,14 @@ class MainViewModel @Inject constructor(
      */
     fun loadVolunteers(id: String, listener: (List<Volunteer>) -> Unit) {
         firebaseDataRepository.loadVolunteers(id, listener)
+    }
+
+    /**
+     * Adds the routine to database.
+     */
+    fun addRoutine(title: String, timestamp: Long) = viewModelScope.launch {
+        val routine = Routine(0, title, timestamp, false)
+        localDataRepository.insert(routine)
     }
 
 
