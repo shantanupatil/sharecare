@@ -1,5 +1,6 @@
 package `in`.shantanupatil.sharecare.modules.utils
 
+import `in`.shantanupatil.sharecare.modules.home.models.Article
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -69,6 +70,13 @@ class ApplicationUtils {
          */
         fun getTimeInMillis(): Long {
             return timeInMillis
+        }
+
+        /**
+         * Returns meta information about news article
+         */
+        fun getNewsMetaInfo(article: Article): String {
+            return "Published by ${article.author}"
         }
     }
 }

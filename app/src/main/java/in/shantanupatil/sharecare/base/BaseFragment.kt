@@ -39,7 +39,7 @@ open class BaseFragment : Fragment() {
      * Shows the progressbar.
      */
     fun showProgressbar(pbProgress: ProgressBar) {
-        pbProgress.visibility = View.GONE
+        pbProgress.visibility = View.VISIBLE
     }
 
     /**

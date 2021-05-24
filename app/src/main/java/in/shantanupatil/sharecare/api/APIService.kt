@@ -10,6 +10,12 @@ import retrofit2.http.Query
  */
 interface APIService {
 
+    /**
+     * Searches for the given query on everything endpoint.
+     */
     @GET("everything")
-    suspend fun getArticles(@Query("apiKey") apikey: String, @Query("q") query: String): Response<ArticleResponse>
+    suspend fun getArticles(
+        @Query("apiKey") apikey: String,
+        @Query("q") query: String
+    ): Response<ArticleResponse>
 }
