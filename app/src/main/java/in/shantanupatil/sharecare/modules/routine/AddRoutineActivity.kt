@@ -4,10 +4,13 @@ import `in`.shantanupatil.sharecare.R
 import `in`.shantanupatil.sharecare.base.BaseActivity
 import `in`.shantanupatil.sharecare.databinding.ActivityAddRoutineBinding
 import `in`.shantanupatil.sharecare.extensions.showToast
+import `in`.shantanupatil.sharecare.modules.routine.model.DailyRoutines
+import `in`.shantanupatil.sharecare.modules.routine.model.Routine
 import android.app.TimePickerDialog
 import android.os.Bundle
 import android.view.View
 import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * Add Routine Activity class.
@@ -23,9 +26,7 @@ class AddRoutineActivity : BaseActivity() {
 
         setAndShowTimePickerDialog()
 
-        binding.tvSubmit.setOnClickListener {
-            handleSubmission()
-        }
+        setClickListener()
     }
 
     override fun getView(): View {
@@ -60,11 +61,39 @@ class AddRoutineActivity : BaseActivity() {
     private fun handleSubmission() {
         val title = binding.etTitle.text.toString()
         if (title.isNotEmpty() && timestamp.toInt() != 0) {
-            mainViewModel.addRoutine(title, timestamp)
-            showToast(this, getString(R.string.routine_added))
-            finish()
+            val routine = Routine(0, title, timestamp, false)
+            mainViewModel.addRoutine(routine)
+            // At this point the routine is only added to the global list
+            // But we need to add it to today's routines as well
+            mainViewModel.loadRoutinesDataFromDatabase().observe(this, androidx.lifecycle.Observer {
+                if (it.isNotEmpty()) {
+                    // Add only if previously not present
+                    val routines = it[0].routines
+                    if (!routines.contains(routine)) {
+                        (routines as ArrayList).add(routine)
+                        mainViewModel.update(DailyRoutines(routines, it[0].timestamp, it[0].id))
+                    }
+                }
+                showToast(this, getString(R.string.routine_added))
+                finish()
+            })
+
+
         } else {
             showToast(this, getString(R.string.all_fields_required))
+        }
+    }
+
+    /**
+     * Sets the click listeners.
+     */
+    private fun setClickListener() {
+        binding.ivBackButton.setOnClickListener {
+            finish()
+        }
+
+        binding.tvSubmit.setOnClickListener {
+            handleSubmission()
         }
     }
 }

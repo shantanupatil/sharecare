@@ -3,11 +3,13 @@ package `in`.shantanupatil.sharecare.modules.routine
 import `in`.shantanupatil.sharecare.R
 import `in`.shantanupatil.sharecare.base.BaseFragment
 import `in`.shantanupatil.sharecare.databinding.FragmentRoutineBinding
+import `in`.shantanupatil.sharecare.modules.routine.views.DailyRoutineAdapter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 
 /**
  * Holds data for Routine Fragment.
@@ -15,6 +17,11 @@ import androidx.lifecycle.Observer
 class RoutineFragment : BaseFragment() {
 
     private lateinit var binding: FragmentRoutineBinding
+
+    /**
+     * Holds daily routine Adapter.
+     */
+    private lateinit var dailyRoutineAdapter: DailyRoutineAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +33,8 @@ class RoutineFragment : BaseFragment() {
         binding = FragmentRoutineBinding.bind(view)
 
         setIconVisibility(true)
+
+        setRecyclerView()
 
         loadRoutineData()
 
@@ -39,6 +48,22 @@ class RoutineFragment : BaseFragment() {
     }
 
     /**
+     * Sets the recyclerview.
+     */
+    private fun setRecyclerView() {
+        dailyRoutineAdapter = DailyRoutineAdapter()
+        binding.rvDailyRoutine.apply {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = dailyRoutineAdapter
+        }
+
+        dailyRoutineAdapter.setOnItemClickListener { dailyRoutines ->
+            mainViewModel.update(dailyRoutines)
+        }
+    }
+
+    /**
      * Loads the routine data from database.
      */
     private fun loadRoutineData() {
@@ -47,9 +72,11 @@ class RoutineFragment : BaseFragment() {
                 response?.let { dailyRoutine ->
                     hideProgressbar(binding.pbProgress)
                     if (dailyRoutine.isEmpty()) {
+                        binding.tvError.text = getString(R.string.no_routines)
                         mainViewModel.addRoutinesToDatabase()
                     } else {
-
+                        binding.tvError.visibility = View.GONE
+                        dailyRoutineAdapter.submitList(dailyRoutine[0])
                     }
                 }
             })

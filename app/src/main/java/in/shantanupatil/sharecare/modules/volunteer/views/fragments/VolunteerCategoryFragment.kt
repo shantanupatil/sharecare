@@ -39,6 +39,8 @@ class VolunteerCategoryFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentVolunteerCategoryBinding.bind(view)
 
+        setIconVisibility(false)
+
         setRecyclerView()
 
         loadData()

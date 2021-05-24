@@ -5,9 +5,9 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "routine_table")
 data class Routine(
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
     val title: String,
     val timestamp: Long = 0,
-    val isCompleted: Boolean
+    var isCompleted: Boolean
 )

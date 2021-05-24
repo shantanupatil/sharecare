@@ -22,6 +22,12 @@ interface ShareCareDao {
     suspend fun insert(dailyRoutines: DailyRoutines)
 
     /**
+     * Updates the daily routine in database.
+     */
+    @Update(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun update(dailyRoutines: DailyRoutines)
+
+    /**
      * Gets daily routine from database.
      */
     @Query("SELECT * FROM daily_routines WHERE timestamp = :timestamp")

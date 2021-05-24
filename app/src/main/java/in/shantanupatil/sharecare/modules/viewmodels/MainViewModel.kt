@@ -42,9 +42,16 @@ class MainViewModel @Inject constructor(
     /**
      * Adds the routine to database.
      */
-    fun addRoutine(title: String, timestamp: Long) = viewModelScope.launch {
-        val routine = Routine(0, title, timestamp, false)
+    fun addRoutine(routine: Routine) = viewModelScope.launch {
         localDataRepository.insert(routine)
+
+    }
+
+    /**
+     * Adds the routine to todays routine
+     */
+    private fun addToDailyRoutine(routine: Routine) {
+        localDataRepository.getRoutinesForToday(ApplicationUtils.getStartOfTheDayTimestamp())
     }
 
     fun loadRoutinesDataFromDatabase() = localDataRepository.getRoutinesForToday(ApplicationUtils.getStartOfTheDayTimestamp())
@@ -58,5 +65,12 @@ class MainViewModel @Inject constructor(
             val dailyRoutine = DailyRoutines(routines, ApplicationUtils.getStartOfTheDayTimestamp())
             localDataRepository.insert(dailyRoutine)
         }
+    }
+
+    /**
+     * Updates the daily routine.
+     */
+    fun update(dailyRoutines: DailyRoutines) = viewModelScope.launch {
+        localDataRepository.update(dailyRoutines)
     }
 }

@@ -13,11 +13,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ShareCare">
-        <activity android:name=".modules.routine.AddRoutineActivity"></activity>
+        <activity android:name=".modules.routine.AddRoutineActivity"
+            android:configChanges="orientation"/>
         <activity android:name=".modules.volunteer.views.activities.VolunteerListActivity" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:configChanges="orientation|screenLayout|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

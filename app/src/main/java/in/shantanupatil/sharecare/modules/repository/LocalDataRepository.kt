@@ -19,4 +19,6 @@ class LocalDataRepository :
         ShareCareDatabase.getInstance().getDao().getRoutinesForToday(startOfTheDayTimestamp)
 
     override suspend fun getRoutines() = ShareCareDatabase.getInstance().getDao().getRoutines()
+
+    override suspend fun update(dailyRoutines: DailyRoutines) = ShareCareDatabase.getInstance().getDao().update(dailyRoutines)
 }

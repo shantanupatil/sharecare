@@ -30,5 +30,14 @@ class ApplicationUtils {
             calendar.set(Calendar.MILLISECOND, 0);
             return calendar.timeInMillis
         }
+
+        /**
+         * Returns a date in format Mon Jan 21.
+         */
+        fun getDate(timestamp: Long): String {
+            val date = Date(timestamp).toString()
+            val splittedDate = date.split(" ")
+            return "${splittedDate[0]} ${splittedDate[1]} ${splittedDate[2]}"
+        }
     }
 }

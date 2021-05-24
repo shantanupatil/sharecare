@@ -26,4 +26,9 @@ interface ILocalDataRepository {
      * Gets all routines from database.
      */
     suspend fun getRoutines(): List<Routine>
+
+    /**
+     * Updates the daily routine.
+     */
+    suspend fun update(dailyRoutines: DailyRoutines)
 }

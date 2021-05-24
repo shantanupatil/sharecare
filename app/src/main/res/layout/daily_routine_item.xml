@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/dimen_12">
+
+    <in.shantanupatil.sharecare.custom.ShareCareTextView
+        android:id="@+id/tvDailyRoutineTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_18"
+        app:customfontStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <in.shantanupatil.sharecare.custom.ShareCareTextView
+        android:id="@+id/tvDailyRoutineDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textColor="@color/grey_light"
+        android:textSize="@dimen/text_small"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvDailyRoutineTitle" />
+
+    <in.shantanupatil.sharecare.custom.ShareCareTextView
+        android:id="@+id/tvIsCompleted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_12"
+        android:layout_marginLeft="@dimen/dimen_12"
+        android:text="@string/app_name"
+        android:textColor="@color/grey_light"
+        android:textSize="@dimen/text_small"
+        app:layout_constraintStart_toEndOf="@id/tvDailyRoutineDate"
+        app:layout_constraintTop_toBottomOf="@id/tvDailyRoutineTitle" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_1"
+        android:layout_marginTop="@dimen/dimen_12"
+        android:background="@color/lighest_black"
+        app:layout_constraintTop_toBottomOf="@id/tvIsCompleted" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
