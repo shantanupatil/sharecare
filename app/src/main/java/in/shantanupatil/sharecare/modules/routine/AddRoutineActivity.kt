@@ -7,7 +7,6 @@ import `in`.shantanupatil.sharecare.extensions.showToast
 import android.app.TimePickerDialog
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import java.util.*
 
 /**
@@ -22,29 +21,25 @@ class AddRoutineActivity : BaseActivity() {
         binding = ActivityAddRoutineBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
 
-        setDateTimepickerDialog()
+        setAndShowTimePickerDialog()
 
         binding.tvSubmit.setOnClickListener {
             handleSubmission()
         }
-
     }
 
-    private fun handleSubmission() {
-        val title = binding.etTitle.text.toString()
-        if (title.isNotEmpty() && timestamp.toInt() != 0) {
-            mainViewModel.addRoutine(title, timestamp)
-            showToast(this, getString(R.string.routine_added))
-            finish()
-        } else {
-            showToast(this, getString(R.string.all_fields_required))
-        }
+    override fun getView(): View {
+        return binding.root
     }
 
-    private fun setDateTimepickerDialog() {
+    /**
+     * Sets and shows the time picker dialog when select date edittext is clicked.
+     */
+    private fun setAndShowTimePickerDialog() {
         binding.etDate.setOnClickListener {
             val calendar = Calendar.getInstance()
-            val timePickerDialog = TimePickerDialog(this,
+            val timePickerDialog = TimePickerDialog(
+                this,
                 TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
                     calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
                     calendar.set(Calendar.MINUTE, minute)
@@ -59,7 +54,17 @@ class AddRoutineActivity : BaseActivity() {
         }
     }
 
-    override fun getView(): View {
-        return binding.root
+    /**
+     * Handles the submission of routine data.
+     */
+    private fun handleSubmission() {
+        val title = binding.etTitle.text.toString()
+        if (title.isNotEmpty() && timestamp.toInt() != 0) {
+            mainViewModel.addRoutine(title, timestamp)
+            showToast(this, getString(R.string.routine_added))
+            finish()
+        } else {
+            showToast(this, getString(R.string.all_fields_required))
+        }
     }
 }

@@ -36,6 +36,13 @@ open class BaseFragment : Fragment() {
     }
 
     /**
+     * Shows the progressbar.
+     */
+    fun showProgressbar(pbProgress: ProgressBar) {
+        pbProgress.visibility = View.GONE
+    }
+
+    /**
      * Hides progressbar.
      */
     fun hideProgressbar(pbProgress: ProgressBar) {
@@ -50,6 +57,9 @@ open class BaseFragment : Fragment() {
 
     }
 
+    /**
+     * Sets the add icon visibility for routine fragment.
+     */
     fun setIconVisibility(shouldShow: Boolean) {
         activityListener.setToolbarIconVisibility(shouldShow)
     }

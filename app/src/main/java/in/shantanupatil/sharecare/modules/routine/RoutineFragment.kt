@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import `in`.shantanupatil.sharecare.R
 import `in`.shantanupatil.sharecare.base.BaseFragment
 import `in`.shantanupatil.sharecare.databinding.FragmentRoutineBinding
+import `in`.shantanupatil.sharecare.modules.Resource
+import android.widget.ProgressBar
+import androidx.lifecycle.Observer
 
 /**
  * Holds data for Routine Fragment.
@@ -27,6 +30,8 @@ class RoutineFragment : BaseFragment() {
 
         setIconVisibility(true)
 
+        loadRoutineData()
+
     }
 
     override fun onCreateView(
@@ -34,5 +39,38 @@ class RoutineFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_routine, container, false)
+    }
+
+    /**
+     * Loads the routine data from database.
+     */
+    private fun loadRoutineData() {
+        mainViewModel.loadRoutinesDataFromDatabase()
+        observeResponse()
+    }
+
+    private fun observeResponse() {
+        mainViewModel.routines.observe(viewLifecycleOwner, Observer { response ->
+            when(response) {
+                is Resource.Loading -> {
+                    showProgressbar(binding.pbProgress)
+                }
+
+                is Resource.Success -> {
+                    response.data?.let {
+                        hideProgressbar(binding.pbProgress)
+                        if (it.routines.isEmpty()) {
+                            mainViewModel.addRoutinesToDatabase()
+                        } else {
+
+                        }
+                    }
+                }
+
+                is Resource.Error -> {
+
+                }
+            }
+        })
     }
 }

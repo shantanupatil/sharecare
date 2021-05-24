@@ -1,16 +1,16 @@
 package `in`.shantanupatil.sharecare.db
 
 import `in`.shantanupatil.sharecare.constants.StringConstants
+import `in`.shantanupatil.sharecare.modules.routine.model.DailyRoutines
 import `in`.shantanupatil.sharecare.modules.routine.model.Routine
 import android.content.Context
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
+import androidx.room.*
 
 /**
  * Database class.
  */
-@Database(entities = [Routine::class], version = 1)
+@Database(entities = [Routine::class, DailyRoutines::class], version = 1)
+@TypeConverters(Converters::class)
 abstract class ShareCareDatabase : RoomDatabase() {
 
     /**
