@@ -4,9 +4,7 @@ import `in`.shantanupatil.sharecare.modules.routine.model.DailyRoutines
 import `in`.shantanupatil.sharecare.modules.routine.model.Routine
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
 interface ShareCareDao {
@@ -14,13 +12,13 @@ interface ShareCareDao {
     /**
      * Inserts the routine.
      */
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(routine: Routine)
 
     /**
      * Inserts the daily routine in database.
      */
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(dailyRoutines: DailyRoutines)
 
     /**

@@ -1,15 +1,12 @@
 package `in`.shantanupatil.sharecare.modules.routine
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import `in`.shantanupatil.sharecare.R
 import `in`.shantanupatil.sharecare.base.BaseFragment
 import `in`.shantanupatil.sharecare.databinding.FragmentRoutineBinding
-import `in`.shantanupatil.sharecare.modules.Resource
-import android.widget.ProgressBar
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.lifecycle.Observer
 
 /**
@@ -46,31 +43,15 @@ class RoutineFragment : BaseFragment() {
      */
     private fun loadRoutineData() {
         mainViewModel.loadRoutinesDataFromDatabase()
-        observeResponse()
-    }
+            .observe(viewLifecycleOwner, Observer { response ->
+                response?.let { dailyRoutine ->
+                    hideProgressbar(binding.pbProgress)
+                    if (dailyRoutine.isEmpty()) {
+                        mainViewModel.addRoutinesToDatabase()
+                    } else {
 
-    private fun observeResponse() {
-        mainViewModel.routines.observe(viewLifecycleOwner, Observer { response ->
-            when(response) {
-                is Resource.Loading -> {
-                    showProgressbar(binding.pbProgress)
-                }
-
-                is Resource.Success -> {
-                    response.data?.let {
-                        hideProgressbar(binding.pbProgress)
-                        if (it.routines.isEmpty()) {
-                            mainViewModel.addRoutinesToDatabase()
-                        } else {
-
-                        }
                     }
                 }
-
-                is Resource.Error -> {
-
-                }
-            }
-        })
+            })
     }
 }

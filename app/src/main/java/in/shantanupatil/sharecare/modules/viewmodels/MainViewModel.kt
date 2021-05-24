@@ -25,8 +25,6 @@ class MainViewModel @Inject constructor(
     private val firebaseDataRepository: IFirebaseDataRepository
 ) : ViewModel() {
 
-    val routines: MutableLiveData<Resource<DailyRoutines>> = MutableLiveData()
-
     /**
      * Loads data from firebase repository for firebase.
      */
@@ -49,20 +47,7 @@ class MainViewModel @Inject constructor(
         localDataRepository.insert(routine)
     }
 
-    fun loadRoutinesDataFromDatabase() {
-        routines.postValue(Resource.Loading())
-        try {
-            val response = localDataRepository.getRoutinesForToday(ApplicationUtils.getStartOfTheDayTimestamp())
-            val routinesList = response.value
-            routinesList?.let {
-                routines.postValue(Resource.Success(it[0]))
-            } ?: kotlin.run {
-                routines.postValue(Resource.Success(DailyRoutines(listOf())))
-            }
-        } catch (exception: Exception) {
-            routines.postValue(Resource.Error("Something went wrong"))
-        }
-    }
+    fun loadRoutinesDataFromDatabase() = localDataRepository.getRoutinesForToday(ApplicationUtils.getStartOfTheDayTimestamp())
 
     /**
      * Adds routines to database.
