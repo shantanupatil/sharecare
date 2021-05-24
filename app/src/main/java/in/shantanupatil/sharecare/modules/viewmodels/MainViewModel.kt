@@ -1,14 +1,18 @@
 package `in`.shantanupatil.sharecare.modules.viewmodels
 
 
+import `in`.shantanupatil.sharecare.modules.home.models.ArticleResponse
+import `in`.shantanupatil.sharecare.modules.home.models.Resource
 import `in`.shantanupatil.sharecare.modules.repository.interfaces.IFirebaseDataRepository
 import `in`.shantanupatil.sharecare.modules.repository.interfaces.ILocalDataRepository
+import `in`.shantanupatil.sharecare.modules.repository.interfaces.IRemoteDataRepository
 import `in`.shantanupatil.sharecare.modules.routine.model.DailyRoutines
 import `in`.shantanupatil.sharecare.modules.routine.model.Routine
 import `in`.shantanupatil.sharecare.modules.utils.ApplicationUtils
 import `in`.shantanupatil.sharecare.modules.volunteer.model.Volunteer
 import `in`.shantanupatil.sharecare.modules.volunteer.model.VolunteerCategory
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,8 +25,14 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val localDataRepository: ILocalDataRepository,
-    private val firebaseDataRepository: IFirebaseDataRepository
+    private val firebaseDataRepository: IFirebaseDataRepository,
+    private val remoteDataRepository: IRemoteDataRepository
 ) : ViewModel() {
+
+    /**
+     * Holds live data of articles.
+     */
+    val articles: MutableLiveData<Resource<ArticleResponse>> = MutableLiveData()
 
     /**
      * Loads data from firebase repository for firebase.
@@ -75,6 +85,36 @@ class MainViewModel @Inject constructor(
      */
     fun update(dailyRoutines: DailyRoutines) = viewModelScope.launch {
         localDataRepository.update(dailyRoutines)
+    }
+
+    /**
+     * Load articles from remote api for a given query.
+     */
+    fun loadArticles(query: String) = viewModelScope.launch {
+        try {
+            articles.value = Resource.Loading()
+            val response = remoteDataRepository.loadArticles(query)
+            if (response.isSuccessful) {
+                response.body()?.let { articleResponse ->
+                    articles.value = Resource.Success(articleResponse)
+                } ?: kotlin.run {
+                    setErrorForArticlesLoading()
+                }
+            } else {
+                setErrorForArticlesLoading()
+            }
+        } catch (exception: Exception) {
+            // This can be changed in future by injecting context, and loading the string from
+            // strings.xml
+            setErrorForArticlesLoading()
+        }
+    }
+
+    /**
+     * Sets the error value.
+     */
+    private fun setErrorForArticlesLoading() {
+        articles.value = Resource.Error("Something went wrong")
     }
 }
 

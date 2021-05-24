@@ -1,4 +1,4 @@
-package `in`.shantanupatil.sharecare.modules.routine.views
+package `in`.shantanupatil.sharecare.modules.routine.views.adapters
 
 import `in`.shantanupatil.sharecare.R
 import `in`.shantanupatil.sharecare.databinding.DailyRoutineItemBinding

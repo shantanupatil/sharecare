@@ -1,9 +1,11 @@
 package `in`.shantanupatil.sharecare.di
 
-import `in`.shantanupatil.sharecare.modules.repository.LocalDataRepository
 import `in`.shantanupatil.sharecare.modules.repository.FirebaseDataRepository
-import `in`.shantanupatil.sharecare.modules.repository.interfaces.ILocalDataRepository
+import `in`.shantanupatil.sharecare.modules.repository.LocalDataRepository
+import `in`.shantanupatil.sharecare.modules.repository.RemoteDataRepository
 import `in`.shantanupatil.sharecare.modules.repository.interfaces.IFirebaseDataRepository
+import `in`.shantanupatil.sharecare.modules.repository.interfaces.ILocalDataRepository
+import `in`.shantanupatil.sharecare.modules.repository.interfaces.IRemoteDataRepository
 import android.content.Context
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -28,8 +30,11 @@ object AppModule {
         )
 
     @Provides
-    fun provideRemoteDataRepository(): IFirebaseDataRepository = FirebaseDataRepository()
+    fun provideFirebaseDataRepository(): IFirebaseDataRepository = FirebaseDataRepository()
 
     @Provides
     fun provideLocalDataRepository(): ILocalDataRepository = LocalDataRepository()
+
+    @Provides
+    fun provideRemoteDataRepository(): IRemoteDataRepository = RemoteDataRepository()
 }

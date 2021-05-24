@@ -4,8 +4,8 @@ import `in`.shantanupatil.sharecare.base.BaseActivity
 import `in`.shantanupatil.sharecare.databinding.ActivityMainBinding
 import `in`.shantanupatil.sharecare.modules.home.HomeFragment
 import `in`.shantanupatil.sharecare.modules.interfaces.IFragmentCallsMA
-import `in`.shantanupatil.sharecare.modules.routine.AddRoutineActivity
-import `in`.shantanupatil.sharecare.modules.routine.RoutineFragment
+import `in`.shantanupatil.sharecare.modules.routine.views.activity.AddRoutineActivity
+import `in`.shantanupatil.sharecare.modules.routine.views.fragment.RoutineFragment
 import `in`.shantanupatil.sharecare.modules.viewmodels.MainViewModel
 import `in`.shantanupatil.sharecare.modules.volunteer.views.fragments.VolunteerCategoryFragment
 import android.content.Intent

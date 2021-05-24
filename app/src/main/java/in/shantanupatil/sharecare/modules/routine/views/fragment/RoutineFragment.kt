@@ -1,9 +1,9 @@
-package `in`.shantanupatil.sharecare.modules.routine
+package `in`.shantanupatil.sharecare.modules.routine.views.fragment
 
 import `in`.shantanupatil.sharecare.R
 import `in`.shantanupatil.sharecare.base.BaseFragment
 import `in`.shantanupatil.sharecare.databinding.FragmentRoutineBinding
-import `in`.shantanupatil.sharecare.modules.routine.views.DailyRoutineAdapter
+import `in`.shantanupatil.sharecare.modules.routine.views.adapters.DailyRoutineAdapter
 import `in`.shantanupatil.sharecare.modules.utils.ApplicationUtils
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -52,7 +52,8 @@ class RoutineFragment : BaseFragment() {
      * Sets the recyclerview.
      */
     private fun setRecyclerView() {
-        dailyRoutineAdapter = DailyRoutineAdapter()
+        dailyRoutineAdapter =
+            DailyRoutineAdapter()
         binding.rvDailyRoutine.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(requireContext())

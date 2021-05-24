@@ -1,4 +1,4 @@
-package `in`.shantanupatil.sharecare.modules.routine
+package `in`.shantanupatil.sharecare.modules.routine.views.activity
 
 import `in`.shantanupatil.sharecare.R
 import `in`.shantanupatil.sharecare.base.BaseActivity
@@ -10,7 +10,6 @@ import android.app.TimePickerDialog
 import android.os.Bundle
 import android.view.View
 import java.util.*
-import kotlin.collections.ArrayList
 
 /**
  * Add Routine Activity class.

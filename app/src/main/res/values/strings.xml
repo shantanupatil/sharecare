@@ -30,4 +30,6 @@
     <string name="not_completed">Not Completed</string>
     <string name="no_routines">No daily routine, please add using the \'+\' icon.</string>
     <string name="no_routines_for_the_date">No routines available for the selected date</string>
+    <string name="read_news">Read News</string>
+    <string name="news_for_you">News for you</string>
 </resources>
