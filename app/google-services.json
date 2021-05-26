@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "851667143983",
+    "project_id": "sharecare-shantanupatil",
+    "storage_bucket": "sharecare-shantanupatil.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:851667143983:android:72b3de826fde75e37425da",
+        "android_client_info": {
+          "package_name": "in.shantanupatil.sharecare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "851667143983-ejsuvsicib4e3q1d2up9aqkaucslsv5m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGqjtOzBGzDyjj4JTBkyGDXwZGiGnNgo4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "851667143983-ejsuvsicib4e3q1d2up9aqkaucslsv5m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
